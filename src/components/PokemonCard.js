@@ -3,13 +3,24 @@ import { Card } from 'semantic-ui-react'
 
 class PokemonCard extends React.Component {
 
+  constructor() {
+    super(),
+    this.state = {
+      flipped: false
+    }
+  }
+
+  toggle = () => {
+    this.setState({ flipped: !this.state.flipped });
+  }
+
 
   render() {
     return (
       <Card>
-        <div>
+        <div onClick={this.toggle}>
           <div className="image">
-            <img src={this.props.pokemon.sprites.front} alt="oh no!" />
+            <img src={ this.state.flipped ? this.props.pokemon.sprites.back : this.props.pokemon.sprites.front} alt="oh no!" />
           </div>
           <div className="content">
           <div className="header">{this.props.pokemon.name}</div>
